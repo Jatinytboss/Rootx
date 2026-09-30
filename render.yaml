@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: rootx-uptimer
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build:node
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB
+        value: rootx_uptimer
+      - key: AUTH_JWT_SECRET
+        generateValue: true
+      - key: MONITOR_CRON_SECRET
+        generateValue: true
+      - key: CHECK_API_URL
+        value: https://api.rootx.run/add
+      - key: MONITOR_TICK_MS
+        value: "5000"
